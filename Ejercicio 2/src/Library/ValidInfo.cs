@@ -1,34 +1,37 @@
-﻿using System;
+using System;
 using System.Text;
 
-/* Esta clase para cumplir con srp deberia primero pasar por otra clase que chequeara que la información
-es valida, para posteriormente crear la consulta.
-Para cumplir con expert, deberia tener la información del cliente y del doctor por separado. */
 
 namespace Library
 {
-    public class AppointmentService
+    public class ValidInfo
     {
-        public static string CreateAppointment(string name, string id, string phoneNumber, DateTime date, string appoinmentPlace, string doctorName)
+        public static string isValid(Customer customer, DateTime date, string appoinmentPlace, Doctor doctor)
         {
             StringBuilder stringBuilder = new StringBuilder("Scheduling appointment...\n");
             Boolean isValid = true;
 
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(customer.name))
             {
                 stringBuilder.Append("Unable to schedule appointment, 'name' is required\n");
                 isValid = false;
             }
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(customer.id))
             {
                 stringBuilder.Append("Unable to schedule appointment, 'id' is required\n");
                 isValid = false;
             }
 
-            if (string.IsNullOrEmpty(phoneNumber))
+            if (string.IsNullOrEmpty(customer.phoneNumber))
             {
                 stringBuilder.Append("Unable to schedule appointment, 'phone number' is required\n");
+                isValid = false;
+            }
+
+            if (string.IsNullOrEmpty(customer.age))
+            {
+                stringBuilder.Append("Unable to schedule appointment, 'age' is required\n");
                 isValid = false;
             }
 
@@ -39,15 +42,21 @@ namespace Library
             }
 
 
-            if (string.IsNullOrEmpty(doctorName))
+            if (string.IsNullOrEmpty(doctor.doctorsName))
             {
                 stringBuilder.Append("Unable to schedule appointment, 'doctor name' is required\n");
                 isValid = false;
             }
 
+            if (string.IsNullOrEmpty(doctor.speciality))
+            {
+                stringBuilder.Append("Unable to schedule appointment, 'doctor speciality' is required\n");
+                isValid = false;
+            }
+
             if (isValid)
             {
-                stringBuilder.Append("Appoinment scheduled");
+                return isValid.ToString();
             }
 
             return stringBuilder.ToString();
