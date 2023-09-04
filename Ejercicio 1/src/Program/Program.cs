@@ -7,11 +7,11 @@ namespace Ucu.Poo.Expert
     {
         static void Main()
         {
-            Book book1 = new Book("Design Patterns","Erich Gamma & Others","001-034");
-            Book book2 = new Book("Pro C#","Troelsen","001-035");
-            book1.ShelveBook("A","7");
-            book2.ShelveBook("B","3");
-
+            BookIdentity book1 = new BookIdentity("Design Patterns ","Erich Gamma & Others ","001-034");
+            BookIdentity book2 = new BookIdentity("Pro C# ","Troelsen ","001-035");
+            ShelveBook ubication1 = new ShelveBook("A", "7"); 
+            ShelveBook ubication2 = new ShelveBook("B", "8"); 
+            
         }
     }
 }
